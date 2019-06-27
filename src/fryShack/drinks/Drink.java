@@ -1,8 +1,9 @@
 package fryShack.drinks;
 
 import fryShack.interfaces.Orderable;
+import fryShack.interfaces.Stockable;
 
-public abstract class Drink implements Orderable {
+public abstract class Drink implements Orderable, Stockable {
 	private String name;
 	private double price;
 	private int volume;

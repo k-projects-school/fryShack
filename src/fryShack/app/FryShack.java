@@ -69,4 +69,9 @@ class FryShack {
 		this.closed.set(Calendar.HOUR_OF_DAY, closingHour);
 	}
 
+	public void mainMenu() {
+		System.out.println("What would you like to do?");
+		
+	}
+
 }
