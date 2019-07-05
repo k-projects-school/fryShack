@@ -87,6 +87,15 @@ public class Register {
 	}
 
 	/**
+	 * Print the tickets for a specific
+	 * 
+	 * @param calendar
+	 */
+	public void printTicketsForToday() {
+		this.printTicketsForDay(today);
+	}
+
+	/**
 	 * Print all the tickets in the register
 	 */
 	public void printAllTickets() {

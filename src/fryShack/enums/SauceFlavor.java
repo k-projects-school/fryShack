@@ -27,6 +27,6 @@ public enum SauceFlavor {
 	 * @return - The name
 	 */
 	public String getName() {
-		return this.name().charAt(0) + this.getName().toLowerCase().substring(1);
+		return this.name().charAt(0) + this.name().toLowerCase().substring(1);
 	}
 }
