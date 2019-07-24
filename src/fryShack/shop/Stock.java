@@ -3,17 +3,10 @@ package fryShack.shop;
 import java.util.Arrays;
 
 import fryShack.app.HandleInput;
-import fryShack.drinks.Alcohollic;
-import fryShack.drinks.SoftDrink;
-import fryShack.enums.AlcoholType;
-import fryShack.enums.Meat;
-import fryShack.enums.SauceFlavor;
-import fryShack.enums.SauceSize;
-import fryShack.enums.SodaFlavor;
-import fryShack.enums.ToppingType;
+import fryShack.drinks.*;
+import fryShack.enums.*;
 import fryShack.foods.Sauce;
 import fryShack.foods.Snack;
-import fryShack.foods.Topping;
 import fryShack.interfaces.Stockable;
 
 public class Stock {
@@ -24,10 +17,8 @@ public class Stock {
 	 * 
 	 * @param stockables
 	 */
-	public void initStock() {
-		System.out.println("What would you like to do?");
-		System.out.println("[1] Set the same amount for every product");
-		System.out.println("[2] Set the amount per product");
+	public void init() {
+		this.printMenu();
 
 		int choice = HandleInput.processInitStockStep1();
 
@@ -36,6 +27,7 @@ public class Stock {
 			System.out.println("How many of each product do you want to store in the stock?");
 			int response = HandleInput.getPositiveInt();
 			Stockable[] tempInventory = new Stockable[0];
+			System.out.println("Processing Alcoholics...");
 			for (AlcoholType alcoholType : AlcoholType.values()) {
 				for (int i = 0; i < response; i++) {
 					tempInventory = Arrays.copyOf(tempInventory, tempInventory.length + 1);
@@ -43,6 +35,7 @@ public class Stock {
 				}
 			}
 
+			System.out.println("Processing Meat...");
 			for (Meat meat : Meat.values()) {
 				for (int i = 0; i < response; i++) {
 					tempInventory = Arrays.copyOf(tempInventory, tempInventory.length + 1);
@@ -50,6 +43,7 @@ public class Stock {
 				}
 			}
 
+			System.out.println("Processing Sauce...");
 			for (SauceFlavor sauceFlavor : SauceFlavor.values()) {
 				for (SauceSize sauceSize : SauceSize.values()) {
 					for (int i = 0; i < response; i++) {
@@ -59,18 +53,29 @@ public class Stock {
 				}
 			}
 
+			System.out.println("Processing Soda...");
 			for (SodaFlavor sodaFlavor : SodaFlavor.values()) {
 				for (int i = 0; i < response; i++) {
 					tempInventory = Arrays.copyOf(tempInventory, tempInventory.length + 1);
 					tempInventory[tempInventory.length - 1] = new SoftDrink(sodaFlavor);
 				}
 			}
+			System.out.println("Finishing...");
 			this.initStock(tempInventory);
-			System.out.println(this.inventory.length);
+			System.out.println("Done!");
 			break;
 		case 2:
 			break;
 		}
+	}
+
+	/**
+	 * Print the stock menu
+	 */
+	private void printMenu() {
+		System.out.println("What would you like to do?");
+		System.out.println("[1] Set the same amount for every product");
+		System.out.println("[2] Set the amount per product");
 	}
 
 	/**

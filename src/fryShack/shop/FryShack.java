@@ -1,14 +1,13 @@
-package fryShack.app;
+package fryShack.shop;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import fryShack.app.HandleInput;
 import fryShack.enums.Menu;
 import fryShack.enums.Menu.Item;
-import fryShack.shop.Register;
-import fryShack.shop.Stock;
 
-class FryShack {
+public class FryShack {
 	/*
 	 * The name of the fry shack
 	 */
@@ -125,10 +124,10 @@ class FryShack {
 	public void action(Item item) {
 		switch (item) {
 		case INIT_STOCK:
-			this.stock.initStock();
+			this.stock.init();
 			break;
 		case FILL_STOCK:
-			//this.stock.addItems(stockables);
+			//this.stock.fill();
 			break;
 		case LIST_STOCK:
 			//this.stock.listItems();

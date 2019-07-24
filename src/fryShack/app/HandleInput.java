@@ -6,7 +6,14 @@ import fryShack.enums.Menu;
 import fryShack.exceptions.WrongNumberException;
 
 public class HandleInput {
-	private static Scanner kbd = new Scanner(System.in);
+	private static Scanner kbd;
+	
+	/**
+	 * Set the Scanner
+	 */
+	public static void start() {
+		kbd = new Scanner(System.in);
+	}
 
 	/**
 	 * Close the scanner object
@@ -28,21 +35,32 @@ public class HandleInput {
 			// Determine what the highest number is that can be chosen
 			int maxChoice = Menu.values().length;
 
-			// If the response is lower than or equal to 0
-			if (response <= 0) {
-				throw new WrongNumberException("You have to choose a number higher than 0");
-			}
-
-			// If the response is higher than the max choice
-			if (response > maxChoice) {
-				throw new WrongNumberException("You have to choose a number lower than or equal to " + maxChoice);
-			}
+			handleResponse(response, maxChoice);
 
 			return response;
 
 		} catch (WrongNumberException e) {
 			System.out.println(e.getMessage());
 			return processMainMenu();
+		}
+	}
+
+	private static void handleResponse(int response, int maxChoice) {
+		// If the response is lower than or equal to 0
+		if (response <= 0) {
+			throw new WrongNumberException("You have to choose a number higher than 0");
+		}
+
+		// If the response is higher than the max choice
+		if (response > maxChoice) {
+			throw new WrongNumberException("You have to choose a number lower than or equal to " + maxChoice);
+		}
+	}
+
+	private static void handleResponse(int response) {
+		// If the response is lower than or equal to 0
+		if (response <= 0) {
+			throw new WrongNumberException("You have to choose a number higher than 0");
 		}
 	}
 
@@ -60,15 +78,7 @@ public class HandleInput {
 			// Determine what the highest number is that can be chosen
 			int maxChoice = menu.getItems().length + 1;
 
-			// If the response is lower than or equal to 0
-			if (response <= 0) {
-				throw new WrongNumberException("You have to choose a number higher than 0");
-			}
-
-			// If the response is higher than the max choice
-			if (response > maxChoice) {
-				throw new WrongNumberException("You have to choose a number lower than or equal to " + maxChoice);
-			}
+			handleResponse(response, maxChoice);
 
 			/*
 			 * If the response is equal to the max choice, the user want's to go to the main
@@ -94,15 +104,7 @@ public class HandleInput {
 			// Determine what the highest number is that can be chosen
 			int maxChoice = 2;
 
-			// If the response is lower than or equal to 0
-			if (response <= 0) {
-				throw new WrongNumberException("You have to choose a number higher than 0");
-			}
-
-			// If the response is higher than the max choice
-			if (response > maxChoice) {
-				throw new WrongNumberException("You have to choose a number lower than or equal to " + maxChoice);
-			}
+			handleResponse(response, maxChoice);
 			
 			return response;
 
@@ -117,10 +119,7 @@ public class HandleInput {
 			// Get the response from the user
 			int response = Integer.parseInt(kbd.next());
 			
-			// If the response is lower than or equal to 0
-			if (response <= 0) {
-				throw new WrongNumberException("You have to choose a number higher than 0");
-			}
+			handleResponse(response);
 			
 			return response;
 
